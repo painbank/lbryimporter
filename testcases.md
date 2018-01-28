@@ -35,7 +35,7 @@ __The following tests will require using a collection, which hasn't previously b
 
 5. Publish a new file collection, where no --channel-name is provided, so it is anonymous
     
-    Choose a channel name, which hasn't been imported previously.
+    Choose a collection name, which hasn't been previously imported anonymously.
     
 >    python lbryimporter.py -s internetarchive -a SciFi_Horror
     
@@ -45,9 +45,11 @@ __The following tests will require using a collection, which hasn't previously b
 
 6. Publish a new file collection, where a --channel-name is provided.
     
-    Choose a channel name, which hasn't been imported previously.
+    Choose a collection name, which hasn't been previously imported anonymously.
+
+    Else, the files may be skipped on import.  Previously published files anonymous will update to channel name.
     
->    python lbryimporter.py -s internetarchive -a SciFi_Horror
+>    python lbryimporter.py -s internetarchive -a SciFi_Horror -d @internetarchive
     
     Expected output:
        checking to see if the file <publish name> exists already in the blockchain.

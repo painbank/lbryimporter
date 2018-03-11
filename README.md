@@ -6,6 +6,9 @@ Future additions may include Gutenburg, YouTube or local files.
 
 ## Dependencies:
 
+* LBRY daemon must be running to enable this script to work properly.  The daemon can be downloaded and 
+run from the [code](https://github.com/lbryio/lbrycrd) or by downloading and running the [LBRY app here](https://lbry.io)
+
 * Python v2.7.10 minimum
 
 * Install [internetarchive.py dependencies](https://internetarchive.readthedocs.io/en/latest/installation.html) per:

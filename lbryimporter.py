@@ -14,6 +14,32 @@ import untangle
 _debug = False
 
 
+def lbry_api_status():
+    print("--------------------------\nChecking to see LBRY daemon is running.")
+    url = "http://localhost:5279/lbryapi"
+
+    data = {}
+    data['jsonrpc'] = '2.0'
+    data['method'] = 'status'
+    json_data = json.dumps(data)
+
+    headers = {
+        'cache-control': "no-cache"
+        }
+    try:
+        response = requests.request("POST", url, data=json_data, headers=headers)
+    except requests.ConnectionError:
+        print "=*=" * 35
+        print "ERROR: The LBRY app or daemon must be running to import files into LBRY."
+        print "=*=" * 35
+        sys.exit()
+
+    print response
+    if response.status_code is 200:
+        return True
+    else:
+        return False
+
 def previously_published(lbry_name=""):
     print("--------------------------\nChecking to see if the file " + lbry_name + " exists already in the blockchain.")
     url = "http://localhost:5279/lbryapi"
@@ -231,6 +257,11 @@ def usage(opts=''):
 
 def main(argv):
     print("main app started.")
+    print("verifing LBRY daemon is running.")
+    if lbry_api_status() is False:
+        print("ERROR - Exiting")
+        sys.exit()
+
     source = ""
     channel = ""
     archive = ""
